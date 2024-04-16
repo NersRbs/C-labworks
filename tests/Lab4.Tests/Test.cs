@@ -1,6 +1,5 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab4.Commands.Entities;
 using Itmo.ObjectOrientedProgramming.Lab4.Parser.Entities;
-using Itmo.ObjectOrientedProgramming.Lab4.Parser.Entities.BuilderHandlers.ConnectBuilderHandlers;
 using Itmo.ObjectOrientedProgramming.Lab4.Parser.Entities.BuilderHandlers.DisconnectBuilderHandlers;
 using Itmo.ObjectOrientedProgramming.Lab4.Parser.Entities.BuilderHandlers.FileCopyBuilderHandlers;
 using Itmo.ObjectOrientedProgramming.Lab4.Parser.Entities.BuilderHandlers.FileDeleteBuilderHandlers;
@@ -22,7 +21,8 @@ public class Test
     {
         // Arrange
         var createCommandHandler =
-            new CommandHandler<DisconnectCommand.DisconnectCommandBuilder>("disconnect",
+            new CommandHandler<DisconnectCommand.DisconnectCommandBuilder>(
+                "disconnect",
                 new DisconnectBuilderHandlers());
         var parser = new CommandParser(createCommandHandler);
 

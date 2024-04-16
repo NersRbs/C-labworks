@@ -1,6 +1,6 @@
-﻿using Core.Extensions;
-using Console;
+﻿using Console;
 using Console.Extensions;
+using Core.Extensions;
 using Infrastructure.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
