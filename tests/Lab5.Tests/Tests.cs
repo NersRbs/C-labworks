@@ -20,7 +20,7 @@ public class Tests
         currentAccountService.Account = new Account(1, "1234", 200);
 
         // Act
-        var service = new MonetaryTransactionService(accountRepository, historyRepository, currentAccountService);
+        var service = new AccountService(accountRepository, historyRepository, currentAccountService);
         Result result = service.AddMonetaryTransaction(-100).GetAwaiter().GetResult();
 
         // Assert
@@ -39,7 +39,7 @@ public class Tests
         currentAccountService.Account = new Account(1, "1234", 200);
 
         // Act
-        var service = new MonetaryTransactionService(accountRepository, historyRepository, currentAccountService);
+        var service = new AccountService(accountRepository, historyRepository, currentAccountService);
         Result result = service.AddMonetaryTransaction(-300).GetAwaiter().GetResult();
 
         // Assert
@@ -57,7 +57,7 @@ public class Tests
         currentAccountService.Account = new Account(1, "1234", 200);
 
         // Act
-        var service = new MonetaryTransactionService(accountRepository, historyRepository, currentAccountService);
+        var service = new AccountService(accountRepository, historyRepository, currentAccountService);
         Result result = service.AddMonetaryTransaction(100).GetAwaiter().GetResult();
 
         // Assert

@@ -5,14 +5,14 @@ namespace Console.Scenarios.Accounts.GetHistory;
 
 public class ShowHistoryScenarioProvider : IScenarioProvider
 {
-    private readonly IShowHistoryService _showHistoryService;
+    private readonly IAccountService _accountService;
     private readonly ICurrentAccountService _currentAccountService;
 
     public ShowHistoryScenarioProvider(
-        IShowHistoryService showHistoryService,
+        IAccountService accountService,
         ICurrentAccountService currentAccountService)
     {
-        _showHistoryService = showHistoryService;
+        _accountService = accountService;
         _currentAccountService = currentAccountService;
     }
 
@@ -24,7 +24,7 @@ public class ShowHistoryScenarioProvider : IScenarioProvider
             return false;
         }
 
-        scenario = new ShowHistoryScenario(_showHistoryService);
+        scenario = new ShowHistoryScenario(_accountService);
         return true;
     }
 }

@@ -6,11 +6,11 @@ namespace Console.Scenarios.Accounts.Add;
 
 public class AddAccountScenario : IScenario
 {
-    private readonly IAddAccountService _addAccountService;
+    private readonly IAdminService _accountService;
 
-    public AddAccountScenario(IAddAccountService addAccountService)
+    public AddAccountScenario(IAdminService accountService)
     {
-        _addAccountService = addAccountService;
+        _accountService = accountService;
     }
 
     public string Name => "Add account";
@@ -26,7 +26,7 @@ public class AddAccountScenario : IScenario
             return;
         }
 
-        Result result = _addAccountService.AddAccount(parsedId, pinCode);
+        Result result = _accountService.AddAccount(parsedId, pinCode);
         string message = result switch
         {
             Result.Success => "[green]Add account successful[/]",

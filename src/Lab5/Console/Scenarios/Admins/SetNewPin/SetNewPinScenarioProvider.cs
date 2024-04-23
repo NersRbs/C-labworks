@@ -5,14 +5,14 @@ namespace Console.Scenarios.Admins.SetNewPin;
 
 public class SetNewPinScenarioProvider : IScenarioProvider
 {
-    private readonly ISetNewPinService _setNewPinService;
+    private readonly IAdminService _adminService;
     private readonly ICurrentAdminService _currentAdminService;
 
     public SetNewPinScenarioProvider(
-        ISetNewPinService setNewPinService,
+        IAdminService adminService,
         ICurrentAdminService currentAdminService)
     {
-        _setNewPinService = setNewPinService;
+        _adminService = adminService;
         _currentAdminService = currentAdminService;
     }
 
@@ -24,7 +24,7 @@ public class SetNewPinScenarioProvider : IScenarioProvider
             return false;
         }
 
-        scenario = new SetNewPinScenario(_setNewPinService);
+        scenario = new SetNewPinScenario(_adminService);
         return true;
     }
 }

@@ -6,11 +6,11 @@ namespace Console.Scenarios.Admins.Login;
 
 public class LoginAdminScenario : IScenario
 {
-    private readonly ILoginAdminService _loginAdminService;
+    private readonly IAdminService _adminService;
 
-    public LoginAdminScenario(ILoginAdminService loginAdminService)
+    public LoginAdminScenario(IAdminService adminService)
     {
-        _loginAdminService = loginAdminService;
+        _adminService = adminService;
     }
 
     public string Name => "Admin";
@@ -18,7 +18,7 @@ public class LoginAdminScenario : IScenario
     {
         string pinCode = AnsiConsole.Ask<string>("Enter your pin code: ");
 
-        Result result = _loginAdminService.Login(pinCode);
+        Result result = _adminService.Login(pinCode);
         string message = result switch
         {
             Result.Success => "[green]Login successful[/]",

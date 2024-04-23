@@ -5,14 +5,14 @@ namespace Console.Scenarios.Accounts.MonetaryTransaction;
 
 public class MonetaryTransactionScenarioProvider : IScenarioProvider
 {
-    private readonly IMonetaryTransactionService _monetaryTransactionService;
+    private readonly IAccountService _accountService;
     private readonly ICurrentAccountService _currentAccountService;
 
     public MonetaryTransactionScenarioProvider(
-        IMonetaryTransactionService monetaryTransactionService,
+        IAccountService accountService,
         ICurrentAccountService currentAccountService)
     {
-        _monetaryTransactionService = monetaryTransactionService;
+        _accountService = accountService;
         _currentAccountService = currentAccountService;
     }
 
@@ -24,7 +24,7 @@ public class MonetaryTransactionScenarioProvider : IScenarioProvider
             return false;
         }
 
-        scenario = new MonetaryTransactionScenario(_monetaryTransactionService);
+        scenario = new MonetaryTransactionScenario(_accountService);
         return true;
     }
 }

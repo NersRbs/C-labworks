@@ -6,11 +6,11 @@ namespace Console.Scenarios.Accounts.Login;
 
 public class LoginAccountScenario : IScenario
 {
-    private readonly ILoginAccountService _loginAccountService;
+    private readonly IAccountService _accountService;
 
-    public LoginAccountScenario(ILoginAccountService loginAccountService)
+    public LoginAccountScenario(IAccountService accountService)
     {
-        _loginAccountService = loginAccountService;
+        _accountService = accountService;
     }
 
     public string Name => "User";
@@ -27,7 +27,7 @@ public class LoginAccountScenario : IScenario
             return;
         }
 
-        Result result = _loginAccountService.Login(parsedId, pinCode);
+        Result result = _accountService.Login(parsedId, pinCode);
         string message = result switch
         {
             Result.Success => "[green]Login successful[/]",

@@ -4,16 +4,16 @@ namespace Console.Scenarios.Admins.ShowAllAccounts;
 
 public class ShowAllAccountScenarios : IScenario
 {
-    private readonly IShowAllAccountsService _showAllAccountsService;
-    public ShowAllAccountScenarios(IShowAllAccountsService showAllAccountsService)
+    private readonly IAdminService _adminService;
+    public ShowAllAccountScenarios(IAdminService adminService)
     {
-        _showAllAccountsService = showAllAccountsService;
+        _adminService = adminService;
     }
 
     public string Name => "Show all accounts";
     public void Run()
     {
-        _showAllAccountsService.ShowAllAccounts();
+        _adminService.ShowAllAccounts();
         System.Console.ReadLine();
     }
 }

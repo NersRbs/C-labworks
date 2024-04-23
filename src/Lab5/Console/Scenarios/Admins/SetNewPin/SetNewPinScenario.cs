@@ -5,17 +5,17 @@ namespace Console.Scenarios.Admins.SetNewPin;
 
 public class SetNewPinScenario : IScenario
 {
-    private readonly ISetNewPinService _setNewPinService;
-    public SetNewPinScenario(ISetNewPinService setNewPinService)
+    private readonly IAdminService _adminService;
+    public SetNewPinScenario(IAdminService adminService)
     {
-        _setNewPinService = setNewPinService;
+        _adminService = adminService;
     }
 
     public string Name => "Set new pin";
     public void Run()
     {
         string pinCode = AnsiConsole.Ask<string>("Enter new pin code: ");
-        _setNewPinService.SetNewPin(pinCode);
+        _adminService.SetNewPin(pinCode);
         AnsiConsole.MarkupLine("[green]Pin code set successfully[/]");
         System.Console.ReadLine();
     }

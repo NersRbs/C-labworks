@@ -1,22 +1,59 @@
 ﻿using System.Globalization;
 using Abstractions.Repositories;
+using Contracts;
 using Contracts.Accounts;
+using Models.Accounts;
 using Models.Histories;
 using Spectre.Console;
 
 namespace Core.Accounts;
 
-public class ShowHistoryService : IShowHistoryService
+public class AccountService : IAccountService
 {
+    private readonly IAccountRepository _accountRepository;
     private readonly IHistoryRepository _historyRepository;
     private readonly CurrentAccountService _currentAccountService;
 
-    public ShowHistoryService(
+    public AccountService(
+        IAccountRepository repository,
         IHistoryRepository historyRepository,
         CurrentAccountService currentAccountService)
     {
+        _accountRepository = repository;
         _historyRepository = historyRepository;
         _currentAccountService = currentAccountService;
+    }
+
+    public Result Login(long id, string pinCode)
+    {
+        Task<Account?> account = _accountRepository.GetById(id);
+
+        if (account.Result is null || BCrypt.Net.BCrypt.Verify(pinCode, account.Result.HashedPinCode) is false)
+        {
+            return new Result.Failed();
+        }
+
+        _currentAccountService.Account = account.Result;
+        return new Result.Success();
+    }
+
+    public async Task<Result> AddMonetaryTransaction(decimal amount)
+    {
+        if (_currentAccountService.Account is null || _currentAccountService.Account.Balance + amount < 0)
+        {
+            return new Result.Failed();
+        }
+
+        _currentAccountService.Account = _currentAccountService.Account with { Balance = _currentAccountService.Account.Balance + amount };
+
+        await _accountRepository.Update(_currentAccountService.Account).ConfigureAwait(false);
+
+        await _historyRepository.AddHistory(
+            _currentAccountService.Account.Id,
+            DateTime.Now,
+            amount).ConfigureAwait(false);
+
+        return new Result.Success();
     }
 
     public async Task ShowHistory()

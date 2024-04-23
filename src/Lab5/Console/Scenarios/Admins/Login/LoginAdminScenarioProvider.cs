@@ -6,16 +6,16 @@ namespace Console.Scenarios.Admins.Login;
 
 public class LoginAdminScenarioProvider : IScenarioProvider
 {
-    private readonly ILoginAdminService _loginAdminService;
+    private readonly IAdminService _adminService;
     private readonly ICurrentAccountService _currentAccountService;
     private readonly ICurrentAdminService _currentAdminService;
 
     public LoginAdminScenarioProvider(
-        ILoginAdminService loginAdminService,
+        IAdminService adminService,
         ICurrentAccountService currentAccountService,
         ICurrentAdminService currentAdminService)
     {
-        _loginAdminService = loginAdminService;
+        _adminService = adminService;
         _currentAccountService = currentAccountService;
         _currentAdminService = currentAdminService;
     }
@@ -29,7 +29,7 @@ public class LoginAdminScenarioProvider : IScenarioProvider
             return false;
         }
 
-        scenario = new LoginAdminScenario(_loginAdminService);
+        scenario = new LoginAdminScenario(_adminService);
         return true;
     }
 }

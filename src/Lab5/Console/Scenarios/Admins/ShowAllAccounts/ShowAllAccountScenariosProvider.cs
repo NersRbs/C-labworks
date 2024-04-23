@@ -5,14 +5,14 @@ namespace Console.Scenarios.Admins.ShowAllAccounts;
 
 public class ShowAllAccountScenariosProvider : IScenarioProvider
 {
-    private readonly IShowAllAccountsService _showAllAccountsService;
+    private readonly IAdminService _adminService;
     private readonly ICurrentAdminService _currentAdminService;
 
     public ShowAllAccountScenariosProvider(
-        IShowAllAccountsService showAllAccountsService,
+        IAdminService adminService,
         ICurrentAdminService currentAdminService)
     {
-        _showAllAccountsService = showAllAccountsService;
+        _adminService = adminService;
         _currentAdminService = currentAdminService;
     }
 
@@ -24,7 +24,7 @@ public class ShowAllAccountScenariosProvider : IScenarioProvider
             return false;
         }
 
-        scenario = new ShowAllAccountScenarios(_showAllAccountsService);
+        scenario = new ShowAllAccountScenarios(_adminService);
         return true;
     }
 }

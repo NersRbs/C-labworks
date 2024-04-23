@@ -5,14 +5,14 @@ namespace Console.Scenarios.Accounts.Add;
 
 public class AddAccountScenarioProvider : IScenarioProvider
 {
-    private readonly IAddAccountService _addAccountService;
+    private readonly IAdminService _adminService;
     private readonly ICurrentAdminService _currentAdminService;
 
     public AddAccountScenarioProvider(
-        IAddAccountService addAccountService,
+        IAdminService adminService,
         ICurrentAdminService currentAdminService)
     {
-        _addAccountService = addAccountService;
+        _adminService = adminService;
         _currentAdminService = currentAdminService;
     }
 
@@ -24,7 +24,7 @@ public class AddAccountScenarioProvider : IScenarioProvider
             return false;
         }
 
-        scenario = new AddAccountScenario(_addAccountService);
+        scenario = new AddAccountScenario(_adminService);
         return true;
     }
 }

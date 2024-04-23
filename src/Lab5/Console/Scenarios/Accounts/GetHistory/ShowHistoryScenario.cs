@@ -4,17 +4,17 @@ namespace Console.Scenarios.Accounts.GetHistory;
 
 public class ShowHistoryScenario : IScenario
 {
-    private readonly IShowHistoryService _showHistoryService;
+    private readonly IAccountService _accountService;
 
-    public ShowHistoryScenario(IShowHistoryService showHistoryService)
+    public ShowHistoryScenario(IAccountService accountService)
     {
-        _showHistoryService = showHistoryService;
+        _accountService = accountService;
     }
 
     public string Name => "Get history";
     public void Run()
     {
-        _showHistoryService.ShowHistory();
+        _accountService.ShowHistory();
         System.Console.ReadLine();
     }
 }

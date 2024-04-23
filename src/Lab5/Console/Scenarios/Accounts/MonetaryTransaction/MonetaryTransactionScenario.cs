@@ -6,11 +6,11 @@ namespace Console.Scenarios.Accounts.MonetaryTransaction;
 
 public class MonetaryTransactionScenario : IScenario
 {
-    private readonly IMonetaryTransactionService _monetaryTransaction;
+    private readonly IAccountService _accountService;
 
-    public MonetaryTransactionScenario(IMonetaryTransactionService monetaryTransaction)
+    public MonetaryTransactionScenario(IAccountService accountService)
     {
-        _monetaryTransaction = monetaryTransaction;
+        _accountService = accountService;
     }
 
     public string Name => "Monetary Transaction";
@@ -25,7 +25,7 @@ public class MonetaryTransactionScenario : IScenario
             return;
         }
 
-        Result result = _monetaryTransaction.AddMonetaryTransaction(parsedAmount).Result;
+        Result result = _accountService.AddMonetaryTransaction(parsedAmount).Result;
         string message = result switch
         {
             Result.Success => "[green]Transaction successful[/]",
